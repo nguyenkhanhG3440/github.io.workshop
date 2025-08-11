@@ -20,19 +20,26 @@ Workshop này hướng dẫn triển khai một ứng dụng demo trên AWS gồ
 4. Ứng dụng gửi email qua Amazon SES (SMTP).
 
 ## Cấu trúc front-end Website
-![Launch EC2](github.io.workshop/images/pj/001.png)
+![Launch EC2]({{ "images/pj/001.png" | relURL }})
 
 ## Cấu trúc Back-end Website
-![Launch EC2](github.io.workshop/images/pj/002.png)
+![Launch EC2]({{ "images/pj/002.png" | relURL }})
 ## Models
-![Launch EC2](github.io.workshop/images/pj/003.png)
+![Launch EC2]({{ "images/pj/003.png" | relURL }})
 ## Controller
-![Launch EC2](github.io.workshop/images/pj/004.png)
+![Launch EC2]({{ "images/pj/004.png" | relURL }})
 ## DTO
-![Launch EC2](github.io.workshop/images/pj/005.png)
+![Launch EC2]({{ "images/pj/005.png" | relURL }})
 ## Repository
-![Launch EC2](github.io.workshop/images/pj/006.png)
+![Launch EC2]({{ "images/pj/006.png" | relURL }})
 ## Sercurity
-![Launch EC2](github.io.workshop/images/pj/007.png)
+![Launch EC2]({{ "images/pj/007.png" | relURL }})
 ## Service
-![Launch EC2](github.io.workshop/images/pj/008.png)
+![Launch EC2]({{ "images/pj/008.png" | relURL }})
+
+
+
+
+
+
+
