@@ -1,0 +1,64 @@
+[
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Tổng quan Workshop này hướng dẫn triển khai một ứng dụng demo trên AWS gồm:\nEC2: máy chủ ứng dụng. RDS (PostgreSQL): cơ sở dữ liệu được quản lý. S3: lưu trữ log/artefacts. SES: dịch vụ gửi email (SMTP). Kiến trúc demo EC2 chạy ứng dụng Spring Boot (hoặc app bất kỳ). EC2 kết nối đến RDS PostgreSQL trong cùng VPC. Ứng dụng ghi log/artefacts lên S3. Ứng dụng gửi email qua Amazon SES (SMTP). Cấu trúc front-end Website Cấu trúc Back-end Website Models Controller DTO Repository Sercurity Service "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/",
+	"title": "Session Management",
+	"tags": [],
+	"description": "",
+	"content": "Làm việc với Amazon System Manager - Session Manager Tổng quan Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Amazon System Manager - Session Management. Thực hành tạo kết nối đến máy chủ public và máy chủ private trong VPC.\nNội dung Giới thiệu Khởi tạo EC2 Khởi tạo S3 Khởi tạo RDS Khởi tạo SES Dọn dẹp tài nguyên "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/2-create-ec2/",
+	"title": "Các bước tạo EC2",
+	"tags": [],
+	"description": "",
+	"content": "Tạo EC2 Bước 1: Launch instance AMI: Amazon Linux 2023 Instance type: t2.micro (Free tier) Key pair: tạo/tải file .pem Security Group: mở 22/TCP (giới hạn IP của bạn) Launch Tạo key pair Cấu hình mạng Bước 2: SSH vào EC2 chmod 400 your-key.pem ssh -i your-key.pem ec2-user@\u0026lt;EC2-Public-IP\u0026gt; Bước 3 : Cài Java và Node sudo yum update -y sudo dnf install -y java-17-amazon-corretto java -version "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/3-create-s3/",
+	"title": "Các bước tạo S3 + Lambda",
+	"tags": [],
+	"description": "",
+	"content": "1 Tạo S3 bucket Vào S3 → Create bucket. Bucket name: your-unique-bucket-name (phải unique toàn cầu). AWS Region: chọ​n cùng region với EC2/RDS (vd: ap-southeast-1). Block Public Access: Giữ ON (khuyến nghị). Create bucket. Build lại dự án React =\u0026gt; Upload file lênh S3 2. Tạo IAM Role cho Lambda Vào IAM → Roles → Create role, chọn trusted entity là Lambda. Gắn quyền cho phép Lambda đọc/ghi vào bucket vừa tạo. Ví dụ inline policy: { \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Action\u0026#34;: [ \u0026#34;s3:PutObject\u0026#34;, \u0026#34;s3:GetObject\u0026#34; ], \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::your-unique-bucket-name/*\u0026#34; } ] } import json import boto3 import base64 import os s3 = boto3.client(\u0026#39;s3\u0026#39;) BUCKET_NAME = os.environ.get(\u0026#34;BUCKET_NAME\u0026#34;, \u0026#34;your-unique-bucket-name\u0026#34;) def lambda_handler(event, context): file_data = base64.b64decode(event[\u0026#39;pdfBase64\u0026#39;]) file_key = f\u0026#34;certificates/{event[\u0026#39;userId\u0026#39;]}/{event[\u0026#39;certificateId\u0026#39;]}.pdf\u0026#34; s3.put_object( Bucket=BUCKET_NAME, Key=file_key, Body=file_data, ContentType=\u0026#34;application/pdf\u0026#34; ) return { \u0026#34;statusCode\u0026#34;: 200, \u0026#34;body\u0026#34;: json.dumps({ \u0026#34;message\u0026#34;: \u0026#34;File uploaded successfully\u0026#34;, \u0026#34;fileKey\u0026#34;: file_key }) } Cấu hình biến môi trường cho Lambda BUCKET_NAME = your-unique-bucket-name Test Lambda Đây event mẫu { \u0026#34;userId\u0026#34;: \u0026#34;user001\u0026#34;, \u0026#34;certificateId\u0026#34;: \u0026#34;cert-1001\u0026#34;, \u0026#34;pdfBase64\u0026#34;: \u0026#34;JVBERi0xLjQKJeLjz9MKNCAwIG9iago8PC9UeXBlIC9QYWdl...\u0026#34; } Kết quả thực tế { \u0026#34;statusCode\u0026#34;: 200, \u0026#34;body\u0026#34;: \u0026#34;{\\\u0026#34;message\\\u0026#34;: \\\u0026#34;File uploaded successfully\\\u0026#34;, \\\u0026#34;fileKey\\\u0026#34;: \\\u0026#34;certificates/u-001/cert-1001.pdf\\\u0026#34;}\u0026#34; } statusCode: 200 nghĩa là Lambda chạy thành công. message: Xác nhận file đã được upload lên S3. fileKey: Đường dẫn file trong bucket S3. "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/4-create-rds/",
+	"title": "Các bước tạo RDS",
+	"tags": [],
+	"description": "",
+	"content": "Tạo RDS PostgreSQL RDS → Create database Engine: PostgreSQL, Template: Free tier DB instance identifier: ctdemo-pg Master username: postgres, password: đặt mạnh Instance class: db.t3.micro, Storage: GP3 (20GB) Connectivity: Chọn VPC của EC2 DB subnet group: default (hoặc subnet riêng) Public access: No VPC SG: chọn SG cho RDS, mở 5432 từ SG của EC2 Tạo database và đợi Available. =\u0026gt; Chọn Clone nếu không muốn dùng dịch vụ phí Kết nối từ EC2 sudo dnf install -y postgresql15 psql \u0026#34;host=\u0026lt;RDS-ENDPOINT\u0026gt; port=5432 user=postgres dbname=postgres password=\u0026lt;PASS\u0026gt;\u0026#34; "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/5-create-ses/",
+	"title": "Tạo Amazion SES",
+	"tags": [],
+	"description": "",
+	"content": "1) Verify email identity SES → Configuration → Identities → Create identity Chọn Email address, nhập email của bạn → Create Vào hòm thư bấm Verify 2) Tạo SMTP user SES → SMTP credentials → Create SMTP user Tải .csv hoặc ghi lại SMTP username \u0026amp; password Vào Configuration =\u0026gt; Identities =\u0026gt; create identity =\u0026gt; nhập email =\u0026gt; create 3) Cấu hình app (Spring Boot) spring.mail.host=email-smtp.ap-southeast-1.amazonaws.com spring.mail.port=587 spring.mail.username=\u0026lt;SMTP_USERNAME\u0026gt; spring.mail.password=\u0026lt;SMTP_PASSWORD\u0026gt; spring.mail.properties.mail.smtp.auth=true spring.mail.properties.mail.smtp.starttls.enable=true app.mail.from=\u0026lt;email-đã-verify\u0026gt; "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/6-cleanup/",
+	"title": "Dọn dẹp tài nguyên  ",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.\nBước 1: Xóa các phiên EC2 Vào AWS EC2 Console → Chọn các instance bạn đã tạo → Actions → Instance State → Terminate.\nBước 2: Xóa Security Group và Key Pair Xóa Security Group nếu không còn dùng. Xóa Key Pair để tránh sử dụng lại. Bước 3: Xóa RDS Vào AWS RDS Console → Chọn database đã tạo. Chọn Actions → Delete. Nếu muốn xóa cả snapshot, bỏ chọn Create final snapshot. Bước 4: Xóa S3 Bucket Nếu đã tạo S3 bucket để lưu log, vào AWS S3 Console → Chọn bucket → Delete.\nBước 5: Xóa SES Identity và User Vào AWS SES Console → Chọn Verified Identities → Xóa email hoặc domain. Vào AWS IAM Console → Xóa user/role đã tạo cho SES. Bước 6: Xóa IAM Role (nếu chưa xóa ở bước trên) Vào AWS IAM Console → Chọn role đã tạo → Delete. "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

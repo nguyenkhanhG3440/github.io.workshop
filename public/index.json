@@ -1,0 +1,64 @@
+[
+{
+	"uri": "http://localhost:1313/github.io.workshop/",
+	"title": "Deploy Web in AWS Cloud",
+	"tags": [],
+	"description": "",
+	"content": "Work with Amazon System Manager - Deploy Web in AWS Cloud Overall In this lab, you\u0026rsquo;ll learn the basics and practice of Amazon System Manager - Session Manager . Perform creating public and private instance connections.\nContent Introduction Create EC2 Create S3 Create RDS Create SES Clean up resources "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/1-introduce/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "This workshop deploys a small demo on AWS:\nEC2 for the application server RDS (PostgreSQL) as managed database S3 for logs/artifacts SES for sending emails (SMTP) "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/2-create-ec2/",
+	"title": "Create EC2 ",
+	"tags": [],
+	"description": "",
+	"content": "Step 1: Launch instance AMI: Amazon Linux 2023 Instance type: t2.micro (Free tier) Key pair: create/download .pem file Security Group: open 22/TCP (restrict your IP) Launch Create key pair Network setting Bước 2: SSH vào EC2 chmod 400 your-key.pem ssh -i your-key.pem ec2-user@\u0026lt;EC2-Public-IP\u0026gt; Bước 3 : Install Java and Node sudo yum update -y sudo dnf install -y java-17-amazon-corretto java -version "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/3-create-s3/",
+	"title": "Create S3",
+	"tags": [],
+	"description": "",
+	"content": "1) Create S3 Bucket Method 1 — AWS Console Go to S3 → Create Bucket.\nBucket Name: your unique bucket-name (must be globally unique).\nAWS Region: select the same region as EC2/RDS (e.g. ap-southeast-1).\nProhibit Public Access: Keep ON (recommended).\nCreate Bucket.\n"
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/4-create-rds/",
+	"title": "Create RDS",
+	"tags": [],
+	"description": "",
+	"content": "Create RDS PostgreSQL RDS → Create database Engine: PostgreSQL, Template: Free tier DB instance identifier: ctdemo-pg Master username: postgres, password: set strong Instance class: db.t3.micro, Storage: GP3 (20GB) Connectivity: Select EC2 VPC DB subnet group: default (or private subnet) Public access: No VPC SG: select SG for RDS, open 5432 from EC2 SG Create database and wait for Available. =\u0026gt; Select Clone if you do not want to use paid service Connect in EC2 sudo dnf install -y postgresql15 psql \u0026#34;host=\u0026lt;RDS-ENDPOINT\u0026gt; port=5432 user=postgres dbname=postgres password=\u0026lt;PASS\u0026gt;\u0026#34; "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/5-create-ses/",
+	"title": "Create Amazon SES",
+	"tags": [],
+	"description": "",
+	"content": "1) Verify email identity SES → Configuration → Identities → Create identity Select Email address, enter your email → Create Go to your mailbox and click Verify 2) Create SMTP user SES → SMTP credentials → Create SMTP user Download .csv or write down SMTP username \u0026amp; password Vào Configuration =\u0026gt; Identities =\u0026gt; create identity =\u0026gt; input email =\u0026gt; create 3 App configuration Spring Boot spring.mail.host=email-smtp.ap-southeast-1.amazonaws.com spring.mail.port=587 spring.mail.username=\u0026lt;SMTP_USERNAME\u0026gt; spring.mail.password=\u0026lt;SMTP_PASSWORD\u0026gt; spring.mail.properties.mail.smtp.auth=true spring.mail.properties.mail.smtp.starttls.enable=true app.mail.from=\u0026lt;email-đã-verify\u0026gt; "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/6-cleanup/",
+	"title": "Clean up resources",
+	"tags": [],
+	"description": "",
+	"content": "We will take the following steps to delete the resources we created in this exercise.\nStep 1: Terminate EC2 Instances Go to AWS EC2 Console → Select your instances → Actions → Instance State → Terminate.\nStep 2: Delete Security Groups and Key Pair Remove unused Security Groups. Delete the Key Pair to avoid reuse. Step 3: Delete RDS Go to AWS RDS Console → Select the created database. Click Actions → Delete. Uncheck Create final snapshot if you don’t need it. Step 4: Delete S3 Bucket If you created an S3 bucket for logs, go to AWS S3 Console → Select the bucket → Delete.\nStep 5: Delete SES Identity and User Go to AWS SES Console → Select Verified Identities → Delete the verified email or domain. Go to AWS IAM Console → Delete the user/role created for SES. Step 6: Delete IAM Role (if not already deleted) Go to AWS IAM Console → Select the created role → Delete. "
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://localhost:1313/github.io.workshop/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
