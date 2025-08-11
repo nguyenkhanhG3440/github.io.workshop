@@ -22,7 +22,7 @@ pre : " <b> 4. </b> "
 
 ![Create RDS](github.io.workshop/images/rds/001.png)
 ![Create RDS](github.io.workshop/images/rds/002.png)
-![Create RDS](github.io.workshop/images/rds/003.png)
+{{< figure src="images/rds/003.png" alt="Create RDS" >}}
 ![Create RDS](github.io.workshop/images/rds/004.png)
 ![Create RDS](github.io.workshop/images/rds/005.png)
 ![Create RDS](github.io.workshop/images/rds/006.png)
