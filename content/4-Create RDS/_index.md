@@ -20,8 +20,8 @@ pre : " <b> 4. </b> "
 - VPC SG: select SG for RDS, **open 5432 from EC2 SG**
 7. Create database and wait for **Available**.
 
-![Create RDS](github.io.workshop/images/rds/001.png)
-![Create RDS](github.io.workshop/images/rds/002.png)
+{{< figure src="images/rds/001.png" alt="Create RDS" >}}
+{{< figure src="/images/rds/002.png" alt="Create RDS" >}}
 {{< figure src="images/rds/003.png" alt="Create RDS" >}}
 ![Create RDS](github.io.workshop/images/rds/004.png)
 ![Create RDS](github.io.workshop/images/rds/005.png)
