@@ -1,5 +1,5 @@
 ---
-title : "Create S3"
+title : "Create S3 and Lambda"
 date: 2025-06-18
 weight : 3
 chapter : false

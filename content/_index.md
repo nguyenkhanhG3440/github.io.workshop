@@ -13,7 +13,7 @@ chapter : false
 ### Content
 1. [Introduction](1-introduce/)
 2. [Create EC2](2-create-ec2/)
-3. [Create S3](3-create-s3/)
+3. [Create S3 and Lambda](3-create-s3/)
 4. [Create RDS](4-create-rds/)
 5. [Create SES](5-create-ses/)
 6. [Clean up resources](6-cleanup/)
