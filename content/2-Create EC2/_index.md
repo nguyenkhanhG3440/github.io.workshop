@@ -13,22 +13,22 @@ pre : " <b> 2. </b> "
 - Security Group: open **22/TCP** (restrict your IP)
 - Launch
 
-![Launch EC2](github.io.workshopimages/ec2/001.png)
+![Launch EC2](/github.io.workshopimages/ec2/001.png)
 
 
 ### Create key pair
 
-![Launch EC2](github.io.workshop/images/ec2/002.png)
+![Launch EC2](/github.io.workshop/images/ec2/002.png)
 
 ### Network setting
 
-![Launch EC2](github.io.workshop/images/ec2/003.png)
-![Launch EC2](github.io.workshop/images/ec2/004.png)
-![Launch EC2](github.io.workshop/images/ec2/005.png)
+![Launch EC2](/github.io.workshop/images/ec2/003.png)
+![Launch EC2](/github.io.workshop/images/ec2/004.png)
+![Launch EC2](/github.io.workshop/images/ec2/005.png)
 
 ### Bước 2: SSH vào EC2
 
-![Launch EC2](github.io.workshop/images/ec2/006.png)
+![Launch EC2](/github.io.workshop/images/ec2/006.png)
 ```bash
 chmod 400 your-key.pem
 ssh -i your-key.pem ec2-user@<EC2-Public-IP>

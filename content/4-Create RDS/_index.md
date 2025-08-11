@@ -20,24 +20,16 @@ pre : " <b> 4. </b> "
 - VPC SG: select SG for RDS, **open 5432 from EC2 SG**
 7. Create database and wait for **Available**.
 
-{{< figure src="images/rds/001.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/002.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/003.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/004.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/005.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/006.png" alt="Create RDS" >}}
-
-
+![Create RDS](/github.io.workshop/images/rds/001.png)
+![Create RDS](/github.io.workshop/images/rds/002.png)
+![Create RDS](/github.io.workshop/images/rds/003.png)
+![Create RDS](/github.io.workshop/images/rds/004.png)
+![Create RDS](/github.io.workshop/images/rds/005.png)
+![Create RDS](/github.io.workshop/images/rds/006.png)
 
 => Select Clone if you do not want to use paid service
-{{< figure src="images/rds/007.png" alt="Create RDS" >}}
-
-{{< figure src="images/rds/008.png" alt="Create RDS" >}}
+![Create RDS](/github.io.workshop/images/rds/007.png)
+![Create RDS](/github.io.workshop/images/rds/008.png)
 ### Connect in EC2
 ```bash
 sudo dnf install -y postgresql15

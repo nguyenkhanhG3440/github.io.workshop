@@ -10,3 +10,20 @@ This workshop deploys a small demo on AWS:
 - RDS (PostgreSQL) as managed database
 - S3 for logs/artifacts
 - SES for sending emails (SMTP)
+
+## Website front-end structure
+![Launch EC2](/github.io.workshop/images/pj/001.png)
+## Website Back-end structure
+![Launch EC2](/github.io.workshop/images/pj/002.png)
+## Models
+![Launch EC2](/github.io.workshop/images/pj/003.png)
+## Controller
+![Launch EC2](/github.io.workshop/images/pj/004.png)
+## DTO
+![Launch EC2](/github.io.workshop/images/pj/005.png)
+## Repository
+![Launch EC2](/github.io.workshop/images/pj/006.png)
+## Sercurity
+![Launch EC2](/github.io.workshop/images/pj/007.png)
+## Service
+![Launch EC2](/github.io.workshop/images/pj/008.png)

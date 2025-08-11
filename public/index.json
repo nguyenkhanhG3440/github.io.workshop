@@ -11,7 +11,7 @@
 	"title": "Introduction",
 	"tags": [],
 	"description": "",
-	"content": "This workshop deploys a small demo on AWS:\nEC2 for the application server RDS (PostgreSQL) as managed database S3 for logs/artifacts SES for sending emails (SMTP) "
+	"content": "This workshop deploys a small demo on AWS:\nEC2 for the application server RDS (PostgreSQL) as managed database S3 for logs/artifacts SES for sending emails (SMTP) Website front-end structure Website Back-end structure Models Controller DTO Repository Sercurity Service "
 },
 {
 	"uri": "http://localhost:1313/github.io.workshop/2-create-ec2/",
@@ -25,7 +25,7 @@
 	"title": "Create S3",
 	"tags": [],
 	"description": "",
-	"content": "1) Create S3 Bucket Method 1 — AWS Console Go to S3 → Create Bucket.\nBucket Name: your unique bucket-name (must be globally unique).\nAWS Region: select the same region as EC2/RDS (e.g. ap-southeast-1).\nProhibit Public Access: Keep ON (recommended).\nCreate Bucket.\n"
+	"content": "1) Create S3 Bucket Method 1 — AWS Console Go to S3 → Create Bucket.\nBucket Name: your unique bucket-name (must be globally unique).\nAWS Region: select the same region as EC2/RDS (e.g. ap-southeast-1).\nProhibit Public Access: Keep ON (recommended).\nCreate Bucket.\n{ \u0026#34;Version\u0026#34;: \u0026#34;2012-10-17\u0026#34;, \u0026#34;Statement\u0026#34;: [ { \u0026#34;Effect\u0026#34;: \u0026#34;Allow\u0026#34;, \u0026#34;Action\u0026#34;: [ \u0026#34;s3:PutObject\u0026#34;, \u0026#34;s3:GetObject\u0026#34; ], \u0026#34;Resource\u0026#34;: \u0026#34;arn:aws:s3:::your-unique-bucket-name/*\u0026#34; } ] } import json import boto3 import base64 import os s3 = boto3.client(\u0026#39;s3\u0026#39;) BUCKET_NAME = os.environ.get(\u0026#34;BUCKET_NAME\u0026#34;, \u0026#34;your-unique-bucket-name\u0026#34;) def lambda_handler(event, context): file_data = base64.b64decode(event[\u0026#39;pdfBase64\u0026#39;]) file_key = f\u0026#34;certificates/{event[\u0026#39;userId\u0026#39;]}/{event[\u0026#39;certificateId\u0026#39;]}.pdf\u0026#34; s3.put_object( Bucket=BUCKET_NAME, Key=file_key, Body=file_data, ContentType=\u0026#34;application/pdf\u0026#34; ) return { \u0026#34;statusCode\u0026#34;: 200, \u0026#34;body\u0026#34;: json.dumps({ \u0026#34;message\u0026#34;: \u0026#34;File uploaded successfully\u0026#34;, \u0026#34;fileKey\u0026#34;: file_key }) } Cấu hình biến môi trường cho Lambda BUCKET_NAME = your-unique-bucket-name Test Lambda Đây event mẫu { \u0026#34;userId\u0026#34;: \u0026#34;user001\u0026#34;, \u0026#34;certificateId\u0026#34;: \u0026#34;cert-1001\u0026#34;, \u0026#34;pdfBase64\u0026#34;: \u0026#34;JVBERi0xLjQKJeLjz9MKNCAwIG9iago8PC9UeXBlIC9QYWdl...\u0026#34; } Kết quả thực tế { \u0026#34;statusCode\u0026#34;: 200, \u0026#34;body\u0026#34;: \u0026#34;{\\\u0026#34;message\\\u0026#34;: \\\u0026#34;File uploaded successfully\\\u0026#34;, \\\u0026#34;fileKey\\\u0026#34;: \\\u0026#34;certificates/u-001/cert-1001.pdf\\\u0026#34;}\u0026#34; } statusCode: 200 means Lambda ran successfully. message: Confirmed file uploaded to S3. fileKey: File path in S3 bucket. "
 },
 {
 	"uri": "http://localhost:1313/github.io.workshop/4-create-rds/",

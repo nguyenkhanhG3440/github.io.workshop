@@ -16,10 +16,10 @@ pre : " <b> 5. </b> "
 - Download **.csv** or write down **SMTP username** & **password**
 
 Vào Configuration => Identities => create identity => input email => create
-![SES SMTP](github.io.workshop/images/ses/001.png)
-![SES SMTP](github.io.workshop/images/ses/002.png)
-![SES SMTP](github.io.workshop/images/ses/003.png)
-![SES SMTP](github.io.workshop/images/ses/004.png)
+![SES SMTP](/github.io.workshop/images/ses/001.png)
+![SES SMTP](/github.io.workshop/images/ses/002.png)
+![SES SMTP](/github.io.workshop/images/ses/003.png)
+![SES SMTP](/github.io.workshop/images/ses/004.png)
 
 ## 3 App configuration Spring Boot
 ```properties

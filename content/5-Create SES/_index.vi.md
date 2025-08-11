@@ -16,10 +16,10 @@ pre : " <b> 5. </b> "
 - Tải **.csv** hoặc ghi lại **SMTP username** & **password**
 
 Vào Configuration => Identities => create identity => nhập email => create
-![SES SMTP](github.io.workshop/images/ses/001.png)
-![SES SMTP](github.io.workshop/images/ses/002.png)
-![SES SMTP](github.io.workshop/images/ses/003.png)
-![SES SMTP](github.io.workshop/images/ses/004.png)
+![SES SMTP](/github.io.workshop/images/ses/001.png)
+![SES SMTP](/github.io.workshop/images/ses/002.png)
+![SES SMTP](/github.io.workshop/images/ses/003.png)
+![SES SMTP](/github.io.workshop/images/ses/004.png)
 
 ## 3) Cấu hình app (Spring Boot)
 ```properties

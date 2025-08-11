@@ -18,10 +18,6 @@ pre : " <b> 3. </b> "
 
 1. Vào **IAM → Roles → Create role**, chọn trusted entity là **Lambda**.  
 2. Gắn quyền cho phép Lambda đọc/ghi vào bucket vừa tạo. Ví dụ **inline policy**:  
-
-![Lambda](github.io.workshop/images/arc-01.png)
-![Lambda](/github.io.workshop/images/arc-01.png)
-
 ![Lambda](/github.io.workshop/images/s3Lambda/001.png)
 ![Lambda](/github.io.workshop/images/s3Lambda/002.png)
 
