@@ -13,7 +13,7 @@ chapter : false
 ### Nội dung
 1. [Giới thiệu](1-introduce/)
 2. [Khởi tạo EC2](2-create-ec2/)
-3. [Khởi tạo S3](3-create-s3/)
+3. [Khởi tạo S3 và Lambda](3-create-s3/)
 4. [Khởi tạo RDS](4-create-rds/)
 5. [Khởi tạo SES](5-create-ses/)
 6. [Dọn dẹp tài nguyên](6-cleanup/)

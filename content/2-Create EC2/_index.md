@@ -13,8 +13,7 @@ pre : " <b> 2. </b> "
 - Security Group: open **22/TCP** (restrict your IP)
 - Launch
 
-![Launch EC2](/github.io.workshopimages/ec2/001.png)
-
+![Launch EC2](/github.io.workshop/images/ec2/001.png)
 
 ### Create key pair
 
