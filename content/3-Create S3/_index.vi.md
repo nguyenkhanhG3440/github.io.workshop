@@ -22,7 +22,7 @@ pre : " <b> 3. </b> "
 ![Lambda](github.io.workshop/images/arc-01.png)
 ![Lambda](/github.io.workshop/images/arc-01.png)
 
-![Lambda](github.io.workshop/images/s3Lambda/001.png)
+![Lambda](/github.io.workshop/images/s3Lambda/001.png)
 ![Lambda](/github.io.workshop/images/s3Lambda/002.png)
 
 
